@@ -15,7 +15,7 @@
     <span style="position: relative; top: 64%;">
       <i class="fas fa-cog sidebar-icon"></i>
     </span>
-    <span style="position: relative; top: 67%;">
+    <span style="position: relative; top: 67%; margin-left: 8px;">
       <i class="fas fa-exclamation sidebar-icon"></i>
     </span>
     <span style="position: relative; top: 70%;">
