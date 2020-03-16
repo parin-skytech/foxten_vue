@@ -1,44 +1,52 @@
 <template>
-  <div id="navbar">
-    <div id="navbar-content-container">
-      <div>
-        <img src="../assets/foxten_logo_2.svg" alt="FoxTEN logo" id="logo" />
-        <span>FOXTEN</span>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <img
+        src="../assets/foxten_logo_2.svg"
+        alt="FoxTEN logo"
+        style="height:30px;width:30px"
+        class="navbar-brand ml-5"
+      />
+      <a class="navbar-brand" href="#">FoxTen</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="my-2 my-lg-0 ml-auto" style="list-style: none; display: inline-flex;">
+          <li class="mr-2">
+            <i class="fas fa-columns icon-color"></i>
+          </li>
+          <li class="mr-2">
+            <i class="fas fa-user-alt icon-color"></i>
+          </li>
+          <li class="mr-2" v-b-modal.upload-modal>
+            <i class="fas fa-upload icon-color" style="cursor: pointer;"></i>
+          </li>
+          <li class="mr-2">
+            <i class="far fa-clock icon-color"></i>
+            <sup>
+              <span
+                class="badge icon-color"
+                style="background-color: rgb(0, 174, 255); font-size: 0.6rem;"
+              >6</span>
+            </sup>
+          </li>
+          <li class="mr-2">
+            <i class="fas fa-bell icon-color"></i>
+            <sup>
+              <span class="badge icon-color" style="background-color: red; font-size: 0.6rem;">12</span>
+            </sup>
+          </li>
+          <li class="mr-2">
+            <i class="fas fa-user-circle icon-color"></i>
+          </li>
+          <li class="mr-2">
+            <span class="mr-2 icon-color">Steve Rodgers</span>
+          </li>
+          <li mr-2>
+            <i class="fas fa-caret-down icon-color"></i>
+          </li>
+        </ul>
       </div>
-      <div>
-        <i class="fas fa-columns icon-spacing icon-color"></i>
-        <i class="fas fa-user-alt icon-spacing icon-color"></i>
-        <b-button variant="link" v-b-modal.upload-modal
-          ><i
-            class="fas fa-upload icon-spacing icon-color"
-            style="cursor: pointer;"
-          ></i
-        ></b-button>
-        <i
-          class="fas fa-sign-out-alt icon-color"
-          style="margin-right: 20px;"
-        ></i>
-        <i class="far fa-clock icon-color"></i
-        ><sup
-          ><span
-            class="badge icon-spacing icon-color"
-            style="background-color: rgb(0, 174, 255); font-size: 0.6rem;"
-            >6</span
-          ></sup
-        >
-        <i class="fas fa-bell icon-color"></i
-        ><sup
-          ><span
-            class="badge icon-spacing icon-color"
-            style="background-color: red; font-size: 0.6rem;"
-            >12</span
-          ></sup
-        >
-        <i class="fas fa-user-circle icon-spacing icon-color"></i>
-        <span class="icon-spacing icon-color">Steve Rodgers</span>
-        <i class="fas fa-caret-down icon-spacing icon-color"></i>
-      </div>
-    </div>
+    </nav>
 
     <!-- Modal -->
     <b-modal
@@ -49,23 +57,15 @@
       body-class="modal-style"
       hide-footer="true"
     >
-      <div
-        style="display: flex; flex-direction: row; justify-content: space-between"
-      >
+      <!-- <div style="display: flex; flex-direction: row; justify-content: space-between"> -->
+      <div class="d-flex flex-row justify-content-between">
         <div>
-          <b-button
-            style="background-color: #43b7e9"
-            onclick="document.getElementById('file').click()"
-          >
-            <span style="color: black;"
-              ><i class="fas fa-file-alt"></i>&nbsp;CHOOSE A FILE</span
-            >
-          </b-button>
-          <b-button style="background-color: #43b7e9; margin-left: 15px;"
-            ><span style="color: black;"
-              ><i class="fas fa-folder"></i>&nbsp;CHOOSE A FOLDER</span
-            ></b-button
-          >
+          <button class="btn modal-button" onclick="document.getElementById('file').click()">
+            <i class="fas fa-file-alt"></i>&nbsp;CHOOSE A FILE
+          </button>
+          <button class="btn modal-button ml-3">
+            <i class="fas fa-folder"></i>&nbsp;CHOOSE A FOLDER
+          </button>
           <input
             type="file"
             id="file"
@@ -74,130 +74,92 @@
           />
         </div>
         <div>
-          <p-button>
-            <i class="fas fa-cog"></i>
-          </p-button>
-          <p-button style="margin-left: 15px;">
-            <i class="fas fa-question-circle"></i>
-          </p-button>
+          <i class="fas fa-cog"></i>
+          <i class="fas fa-question-circle ml-3"></i>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="file">File(s)</label>
-          <b-form-input
-            style="background-color: #3c4043; color: #999999;"
-            v-model="fileName"
-            id="file"
-          ></b-form-input>
+          <input class="form-control modal-input" v-model="fileName" id="file" />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="title">Title</label>
-          <b-form-input
-            style="background-color: #232b32; color: #999999"
-            class="modal-input"
-            id="title"
-            placeholder="Title"
-          ></b-form-input>
+          <input class="form-control modal-input" id="title" placeholder="Title" />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="comments">Comments / Text Input</label>
-          <b-form-textarea
-            style="background-color: #232b32; color: #999999"
+          <textarea
+            class="form-control modal-input"
             id="comments"
             rows="2"
             max-rows="6"
             placeholder="Enter text"
-          ></b-form-textarea>
+          ></textarea>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="tags">Tags</label>
-          <b-form-input
-            style="background-color: #232b32; color: #999999"
-            id="tags"
-            placeholder="Tag with keyword(s)"
-          ></b-form-input>
+          <input class="form-control modal-input" id="tags" placeholder="Tag with keyword(s)" />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="dateOccurred">Date Occurred</label>
-          <b-form-input
-            style="background-color: #232b32; color: #999999"
-            v-model="lastModifiedTime"
-            id="dateOccurred"
-          ></b-form-input>
+          <input class="form-control modal-input" v-model="lastModifiedTime" id="dateOccurred" />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="author">Author</label>
-          <b-form-input
-            v-model="text"
-            id="author"
-            style="background-color: #232b32; color: #999999"
-          >
-          </b-form-input>
+          <input v-model="text" id="author" class="form-control modal-input" />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <label for="coordinates">Coordinates (MGRS)</label>
-          <b-form-textarea
-            style="background-color: #232b32; color: #999999"
+          <textarea
+            class="form-control modal-input"
             id="corrdinates"
             v-model="text"
             rows="2"
             max-rows="6"
-          ></b-form-textarea>
+          ></textarea>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <label for="classification">Classification</label>
-          <select
-            id=""
-            class="form-control"
-            style="background-color: #232b32; color: #999999"
-          >
+          <select id class="form-control modal-input">
             <option value="default"></option>
           </select>
         </div>
         <div class="col-md-3 offset-md-2">
           <label for="classification">Owner/Producer</label>
-          <select
-            id=""
-            class="form-control"
-            style="background-color: #232b32; color: #999999"
-          >
+          <select id class="form-control modal-input">
             <option value="default">USA</option>
           </select>
         </div>
       </div>
-      <div class="row" style="margin-top: 10px;">
-        <div class="col-md-6" style="margin-left: 10px;">
-          <i class="fas fa-plus" style="color: white;"></i
-          >&nbsp;&nbsp;&nbsp;<span style="color: white;"
-            >DISSEMINATION CONTROLS</span
-          >
+      <div class="row mt-2">
+        <div class="col-md-6 ml-5">
+          <i class="fas fa-plus" style="color: white;"></i>&nbsp;&nbsp;&nbsp;
+          <span style="color: white;">DISSEMINATION CONTROLS</span>
         </div>
       </div>
-      <div class="row" style="margin-top: 15px">
+      <div class="row mt-2">
         <div class="col-md-2">
-          <b-button style="background-color: #43b7e9;" @click="uploadFile">
-            <span style="color: black;">UPLOAD</span>
-          </b-button>
+          <button class="btn modal-button" @click="uploadFile">UPLOAD</button>
         </div>
         <div class="col-md-2">
-          <b-button style="background-color: #121212; border: none;">
+          <button style="background-color: #121212; border: none;">
             <span style="color: #43b7e9;">CLEAR</span>
-          </b-button>
+          </button>
         </div>
       </div>
     </b-modal>
@@ -245,7 +207,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#navbar {
+/* #navbar {
   height: 60px;
   width: 100%;
   position: fixed;
@@ -274,9 +236,15 @@ export default {
 .icon-spacing {
   margin-right: 10px;
   font-size: 1.2rem;
-}
+} */
 
 .icon-color {
   color: #eeeeee;
+}
+
+#logo {
+  margin-left: 80px;
+  height: 40px;
+  margin-top: 15px;
 }
 </style>
