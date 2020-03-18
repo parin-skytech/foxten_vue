@@ -17,7 +17,7 @@
           <li class="mr-2">
             <i class="fas fa-user-alt icon-color"></i>
           </li>
-          <li class="mr-2" v-b-modal.upload-modal>
+          <li class="mr-2" v-b-modal.upload-modal title="Upload file">
             <i class="fas fa-upload icon-color" style="cursor: pointer;"></i>
           </li>
           <li class="mr-2">
@@ -57,7 +57,6 @@
       body-class="modal-style"
       hide-footer="true"
     >
-      <!-- <div style="display: flex; flex-direction: row; justify-content: space-between"> -->
       <div class="d-flex flex-row justify-content-between">
         <div>
           <button class="btn modal-button" onclick="document.getElementById('file').click()">
@@ -188,13 +187,22 @@ export default {
       this.lastModifiedTime = new Date(files[0].lastModified).toString();
     },
     uploadFile: function() {
-      var endpoint = "http://localhost:8081";
+      var endpoint = "http://localhost:8081/uploadfile";
       var formData = new FormData();
       formData.append("file", this.fileToUpload, this.fileToUpload.name);
       // return this.http.post(endpoint, formData);
       this.$http.post(endpoint, formData).then(
         function(fileUploadSucess) {
           console.log("File was successfully uploaded", fileUploadSucess);
+          this.$bvToast.toast(`File was successfully uploaded`, {
+            title: "File Upload",
+            autoHideDelay: 5000,
+            appendToast: false
+          });
+          this.$bvModal.hide("upload-modal");
+          (this.fileToUpload = null),
+            (this.fileName = null),
+            (this.lastModifiedTime = null);
         },
         function(fileUploadFailed) {
           console.error("File upload failed", fileUploadFailed);
